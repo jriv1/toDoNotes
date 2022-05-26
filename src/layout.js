@@ -1,7 +1,8 @@
-
+import { forToday } from "./creatingtodo";
 
 //page layout
-
+const modal = document.querySelector(".modal");
+const closemodalbtn = document.querySelector(".close");
 
 const layout = function(){
 
@@ -45,7 +46,11 @@ const layout = function(){
     const mainContent = document.createElement("h1");
     mainContent.className = "maincontent";
     mainContent.textContent = "Homepage";
-    main.appendChild(mainContent);
+    const todolist = document.createElement("div");
+    todolist.className = "todolist";
+    // todolist.innerHTML = "todolist";
+
+    main.append(mainContent,todolist);
 
     
     
@@ -55,6 +60,7 @@ const layout = function(){
 
     todaybtn.addEventListener("click",function(){
         mainContent.textContent = "Today";
+        forToday();
     })
     homebtn.addEventListener("click",function(){
         mainContent.textContent = "Homepage";
@@ -63,12 +69,31 @@ const layout = function(){
         mainContent.textContent = "Notes";
     })
 
+    addbtn.addEventListener("click",function(){
+        modal.style.display = "block";
+    })
+
 
    
 
 
 }
 
+const modalcontrol = function(){
+    
+ 
+      
+     closemodalbtn.addEventListener("click",function(){
+         modal.style.display = "none";
+     })
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+}
 
 
-export{layout};
+
+export{layout,modalcontrol};
